@@ -13,7 +13,9 @@ const MarketReviews = () => {
         <div className="mt-3 text-xl">Stay updated with the latest trends and insights from the cryptocurrency market. Explore price movements, analysis, and expert reviews</div>
       </div>
       <div className="flex flex-col">
-        <div className=""></div>
+        <div className="">
+        
+        </div>
       </div>
         </div>
 

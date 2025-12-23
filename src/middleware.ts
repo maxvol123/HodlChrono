@@ -1,35 +1,25 @@
 import { getToken } from "next-auth/jwt";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
+    const token = await getToken({req: request, secret: process.env.AUTH_SECRET})
+    const protectedRoutes = ["/admin"]
 
-    // список защищённых маршрутов
-    const protectedRoutes = ["/admin"];
-
-    // если путь не защищён — пропускаем
-    if (!protectedRoutes.some((route) => pathname.startsWith(route))) {
-        return NextResponse.next();
-    }
-
-    // получаем JWT из NextAuth
-    const token = await getToken({ req: request, secret: process.env.AUTH_SECRET });
-
-    // если токена нет — редирект на логин
+if (protectedRoutes.some(route => pathname.startsWith(route))) {
+    
     if (!token) {
-        return NextResponse.redirect(new URL("/login", request.url));
+        const url = new URL("/auth/login", request.url)
+        return NextResponse.redirect(url)
     }
-
-    // проверка роли
-    if (token.role !== "admin") {
-        return NextResponse.redirect(new URL("/403", request.url));
+    
+    if (token.isAdmin === false) {
+        const url = new URL("/", request.url)
+        return NextResponse.redirect(url)
     }
-
-    // всё ок, пускаем дальше
-    return NextResponse.next();
 }
-
-// указываем на какие маршруты срабатывает middleware
+    return NextResponse.next()
+}
 export const config = {
-    matcher: ["/admin/:path*"]
-};
+    matcher: ["/admin"]
+}

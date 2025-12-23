@@ -76,13 +76,13 @@ model VerificationToken {
 }
 model CryptoHistory {
   id     String   @id @default(cuid())
-  symbol String   // 'BTC'
-  date   DateTime // Дата записи
-  open   Float    // Цена открытия
-  high   Float    // Максимальная цена
-  low    Float    // Минимальная цена  
-  close  Float    // Цена закрытия
-  volume Float?   // Объем торгов
+  symbol String 
+  date   DateTime 
+  open   Float    
+  high   Float    
+  low    Float    
+  close  Float    
+  volume Float?   
 
   @@unique([symbol, date])
 }
@@ -90,7 +90,7 @@ model CryptoHistory {
 model CryptoDailyUpdate {
   id          String   @id @default(cuid())
   symbol      String   @unique
-  lastUpdated DateTime // Когда последний раз обновляли
+  lastUpdated DateTime 
 }
 model CryptoReviews {
   id          String   @id @default(cuid())

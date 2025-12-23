@@ -13,7 +13,7 @@ export const homepage = {
                     link: "/"
                 },
             },
-            dataTitle:"Trusted by 200+ investors learning to build smarter portfoliosx",
+            dataTitle:"Trusted by 20+ investors learning to build smarter portfolios",
             dataSubTitle:"Market data referenced from:",
             logo1:"/bybit-logo.png",
             logo2:"/CG-logo.png",

@@ -57,10 +57,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
     callbacks: {
       async jwt({token, user}) {
-        console.log(token);
         
         if (user) {
           token.id = user.id
+          token.isAdmin = user.isAdmin
         }
         return token
       }
