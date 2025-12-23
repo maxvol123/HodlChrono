@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/daily-buy-alerts",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-buy-alerts",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/monthly-buy-alerts",
+      "schedule": "0 9 1 * *"
+    }
+  ]
+}

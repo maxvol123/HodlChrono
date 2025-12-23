@@ -1,103 +1,72 @@
+"use client"
 import Image from "next/image";
+import ChipGreen from "./components/common/chip-green";
+import CustomButton from "./components/common/custom-button";
+import { homepage } from "./config/homepage";
+import CustomCard from "./components/common/custom-card";
+import HomePageElements from "./components/common/homepage-elements";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="w-full text-center pt-5 pb-24 px-3">
+    <div 
+    className="min-h-[700px] w-full absolute -z-10" 
+    style={{
+      background: 'radial-gradient(circle,rgba(0, 230, 118, 0.79) 0%, rgba(252, 70, 107, 0) 38%)',
+      maxWidth: "-webkit-fill-available"
+      
+    }}
+  ></div>
+    
+        <ChipGreen>{homepage.firstPart.chipgreen}</ChipGreen>
+      <div className="w-full text-center pt-32"   >
+        
+        <div className="text-3xl">{homepage.firstPart.mainTitle}</div>
+        <div className="mt-3 text-xl">{homepage.firstPart.mainDesc}</div>
+      </div>
+<div className="w-full max-w-[900px] mx-auto mt-44">
+  <div className="flex justify-around items-center w-full flex-wrap gap-3">
+    <CustomButton href={homepage.firstPart.buttons.button1.link} type="white" label={homepage.firstPart.buttons.button1.label} />
+    <CustomButton href={homepage.firstPart.buttons.button2.link} type="green" label={homepage.firstPart.buttons.button2.label} />
+  </div>
+</div>
+      <div className="w-full text-center pt-32"   >
+        
+        <div className="text-[19px]">{homepage.firstPart.dataTitle}</div>
+        <div className="mt-3 text-[19px]">{homepage.firstPart.dataSubTitle}</div>
+      </div>
+     <div className="w-full max-w-[1000px] mx-auto mt-10">
+      <div className="flex justify-around items-center w-full flex-wrap gap-5">
+        <Image src={homepage.firstPart.logo1} alt="Bybit" width={200} height={60}/>
+        <Image src={homepage.firstPart.logo2} alt="CK" width={200} height={60}/>
+        <Image src={homepage.firstPart.logo3} alt="OKX" width={200} height={60}/>
+</div> 
+      </div>
+            <div className="w-full text-center pt-32">
+        
+        <div className="text-3xl">{homepage.secondPart.mainTitle}</div>
+        <div className="w-full max-w-[1300px] mx-auto mt-10">
+        <div className="flex flex-row justify-around flex-wrap gap-5">
+          <CustomCard title={homepage.secondPart.cards.card1.title} desc={homepage.secondPart.cards.card1.desc} label={homepage.secondPart.cards.card1.button.label} link={homepage.secondPart.cards.card1.button.link}/>
+          <CustomCard title={homepage.secondPart.cards.card2.title} desc={homepage.secondPart.cards.card2.desc} label={homepage.secondPart.cards.card2.button.label} link={homepage.secondPart.cards.card2.button.link}/>
+          <CustomCard title={homepage.secondPart.cards.card3.title} desc={homepage.secondPart.cards.card3.desc} label={homepage.secondPart.cards.card3.button.label} link={homepage.secondPart.cards.card3.button.link}/>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        </div>
+      </div>
+      
+      <div className="w-full text-center pt-32">
+        
+        <div className="text-3xl">{homepage.thirdPart.mainTitle}</div>
+        <div className="flex flex-wrap justify-around mt-10 max-lg:gap-7">
+            <HomePageElements title={homepage.thirdPart.elements.el1.title} desc={homepage.thirdPart.elements.el1.desc} size={1} marginBottom={true}/>
+            <HomePageElements title={homepage.thirdPart.elements.el2.title} desc={homepage.thirdPart.elements.el2.desc} size={3}/>
+            <ChipGreen>{homepage.thirdPart.elements.chipgreen.title}</ChipGreen>
+            <HomePageElements title={homepage.thirdPart.elements.el3.title} desc={homepage.thirdPart.elements.el3.desc} size={3}/>
+
+        </div>
+      </div>
+
+
     </div>
   );
 }

@@ -1,0 +1,20 @@
+{
+  "crons": [
+     {
+      "path": "/api/cron/update-crypto",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/cron/daily-buy-alerts",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/weekly-buy-alerts",
+      "schedule": "0 9 * * 1"
+    },
+    {
+      "path": "/api/cron/monthly-buy-alerts",
+      "schedule": "0 9 1 * *"
+    }
+  ]
+}

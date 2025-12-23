@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  email     String    @unique
+  password  String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  accounts  Account[]
+  sessions  Session[]
+  notificationSettings NotificationSettings?
+  isAdmin Boolean @default(false)
+  // portfolios    Portfolio[]
+
+  @@map("users")
+}
+model NotificationSettings {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  dailyBuyAlerts    Boolean @default(false)
+  weeklyBuyAlerts   Boolean @default(false) 
+  monthlyBuyAlerts  Boolean @default(false)
+  
+  updatesAlerts     Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+model CryptoHistory {
+  id     String   @id @default(cuid())
+  symbol String   // 'BTC'
+  date   DateTime // Дата записи
+  open   Float    // Цена открытия
+  high   Float    // Максимальная цена
+  low    Float    // Минимальная цена  
+  close  Float    // Цена закрытия
+  volume Float?   // Объем торгов
+
+  @@unique([symbol, date])
+}
+
+model CryptoDailyUpdate {
+  id          String   @id @default(cuid())
+  symbol      String   @unique
+  lastUpdated DateTime // Когда последний раз обновляли
+}
+model CryptoReviews {
+  id          String   @id @default(cuid())
+  date        String
+  title       String
+  imageurl    String
+  prediction  String
+  author      String
+}
